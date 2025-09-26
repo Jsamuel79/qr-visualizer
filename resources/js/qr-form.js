@@ -4,8 +4,7 @@ console.log("Vue loaded !");
 createApp({
     data() {
         return {
-            sites: [{ name:'', departments: [] }],
-            qrImage: null
+            sites: [{ name:'', departments: [] }]
         }
     },
     methods: {
@@ -20,30 +19,7 @@ createApp({
         },
         addEquipment(sIndex, dIndex, pIndex) {
             this.sites[sIndex].departments[dIndex].poles[pIndex].equipments.push({name:''});
-        },
-        submitForm() {
-            fetch("/generate-qr", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify({ data: this.sites })
-            })
-            .then(res => res.blob())
-            .then(blob => {
-                // ⚡ Téléchargement automatique du PDF
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = "qr_code.png";
-                a.click();
-                URL.revokeObjectURL(url);
-
-                // ⚡ Optionnel : afficher l’aperçu sur la page
-                this.qrImage = url;
-            });
         }
     }
-}).mount('#qr-form'); // ⚡ très important
+}).mount('#qr-form');
 

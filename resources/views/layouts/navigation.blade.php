@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('qr.form')" :active="('qr.form')">
                         {{ __('Qr-generator') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('qr.scan')" :active="('qr.scan')">
+                        {{ __('Qr-scan') }}
+                    </x-nav-link>
                 </div>
             </div>
 
