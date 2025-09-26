@@ -60,18 +60,19 @@ class QrController extends Controller
     {
         $data = $request->input('qrdata');
 
+        // Vérifie si on reçoit du JSON valide
         $decoded = json_decode($data, true);
         if (!$decoded) {
             return response()->json(['error' => 'QR invalide'], 400);
         }
 
-        // Sauvegarde dans la BDD
-        DB::table('inventaire')->insert([
-            'structure' => json_encode($decoded),
+        // Stockage en BDD
+        \DB::table('inventaire')->insert([
+            'structure' => json_encode($decoded), // JSON stocké
             'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         return response()->json(['success' => true]);
     }
 }
-

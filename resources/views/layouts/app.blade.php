@@ -14,6 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- cdn -->
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
     </head>
     <body class="font-sans antialiased">
